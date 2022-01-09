@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from multiselectfield import MultiSelectField
 
 
 class Project(models.Model):
@@ -38,10 +37,10 @@ class Risk(models.Model):
 
     name = models.CharField(max_length=100)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    background = MultiSelectField(choices=BACKGROUND_LIST, max_choices=1)
+    background = models.CharField(max_length=50, choices=BACKGROUND_LIST)
     user_assigned = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    priority = MultiSelectField(choices=PRIORITY_LEVELS, max_choices=1)
-    probability_percentage = MultiSelectField(choices=PROBABILITY_LEVELS, max_choices=1)
+    priority = models.CharField(max_length=10, choices=PRIORITY_LEVELS, default="Low")
+    probability_percentage = models.CharField(max_length=4, choices=PROBABILITY_LEVELS, default="10%")
 
 
 

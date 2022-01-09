@@ -4,10 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+Django = "*"
 djangorestframework = "*"
 python-dotenv = "*"
-django-multiselectfield = "*"
 
 [dev-packages]
 
