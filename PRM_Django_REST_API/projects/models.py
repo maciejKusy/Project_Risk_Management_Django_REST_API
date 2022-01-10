@@ -7,6 +7,9 @@ class Project(models.Model):
     description = models.TextField(max_length=300)
     users_assigned = models.ManyToManyField(User)
 
+    def __str__(self):
+        return self.name
+
 
 class Risk(models.Model):
     class Background(models.TextChoices):
@@ -32,7 +35,7 @@ class Risk(models.Model):
         HUNDRED_PERCENT = '10', '100%'
 
     name = models.CharField(max_length=100)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='risks')
     background = models.CharField(max_length=50, choices=Background.choices)
     user_assigned = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
     priority = models.CharField(max_length=10, choices=Priority.choices)
