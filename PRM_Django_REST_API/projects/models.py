@@ -9,38 +9,34 @@ class Project(models.Model):
 
 
 class Risk(models.Model):
-    BACKGROUND_LIST: tuple = (
-        ("FIN", 'Finance'),
-        ("STF", "Staffing"),
-        ("OP", "Operations")
-    )
+    class Background(models.TextChoices):
+        FINANCE = '1', 'Finance'
+        OPERATIONS = '2', 'Operations'
+        STAFFING = '3', 'Staffing'
 
-    PRIORITY_LEVELS: tuple = (
-        ("LOW", "Low"),
-        ("MED", "Medium"),
-        ("HIGH", "High"),
-        ("VHIGH", "Very High")
-    )
+    class Priority(models.TextChoices):
+        LOW = '1', 'Low'
+        MEDIUM = '2', 'Medium'
+        HIGH = '3', 'High'
 
-    PROBABILITY_LEVELS: tuple = (
-        (1, "10%"),
-        (2, "20%"),
-        (3, "30%"),
-        (4, "40%"),
-        (5, "50%"),
-        (6, "60%"),
-        (7, "70%"),
-        (8, "80%"),
-        (9, "90%"),
-        (10, "100%")
-    )
+    class Probability(models.TextChoices):
+        TEN_PERCENT = '1', '10%'
+        TWENTY_PERCENT = '2', '20%'
+        THIRTY_PERCENT = '3', '30%'
+        FORTY_PERCENT = '4', '40%'
+        FIFTY_PERCENT = '5', '50%'
+        SIXTY_PERCENT = '6', '60%'
+        SEVENTY_PERCENT = '7', '70%'
+        EIGHTY_PERCENT = '8', '80%'
+        NINETY_PERCENT = '9', '90%'
+        HUNDRED_PERCENT = '10', '100%'
 
     name = models.CharField(max_length=100)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-    background = models.CharField(max_length=50, choices=BACKGROUND_LIST)
-    user_assigned = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
-    priority = models.CharField(max_length=10, choices=PRIORITY_LEVELS, default="Low")
-    probability_percentage = models.CharField(max_length=4, choices=PROBABILITY_LEVELS, default="10%")
+    background = models.CharField(max_length=50, choices=Background.choices)
+    user_assigned = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
+    priority = models.CharField(max_length=10, choices=Priority.choices)
+    probability_percentage = models.CharField(max_length=6, choices=Probability.choices)
 
 
 
