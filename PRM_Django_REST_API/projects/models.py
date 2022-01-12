@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from simple_history.models import HistoricalRecords
 
 
 class Project(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(max_length=300)
+    name = models.CharField(max_length=100, blank=False)
+    description = models.TextField(max_length=300, blank=False)
 
     def __str__(self):
         return self.name
@@ -33,12 +34,13 @@ class Risk(models.Model):
         NINETY_PERCENT = '9', '90%'
         HUNDRED_PERCENT = '10', '100%'
 
-    name = models.CharField(max_length=100)
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='risks')
-    background = models.CharField(max_length=50, choices=Background.choices)
+    name = models.CharField(max_length=100, blank=False)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='risks', blank=False)
+    background = models.CharField(max_length=50, choices=Background.choices, blank=False)
     user_assigned = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL)
-    priority = models.CharField(max_length=10, choices=Priority.choices)
-    probability_percentage = models.CharField(max_length=6, choices=Probability.choices)
+    priority = models.CharField(max_length=10, choices=Priority.choices, blank=False)
+    probability_percentage = models.CharField(max_length=6, choices=Probability.choices, blank=False)
+    change_history = HistoricalRecords()
 
     def __str__(self):
         return self.name

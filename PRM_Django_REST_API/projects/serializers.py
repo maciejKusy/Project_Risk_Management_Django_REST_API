@@ -29,10 +29,16 @@ class DetailedRiskSerializer(serializers.ModelSerializer):
     user_assigned = serializers.StringRelatedField(many=False)
     priority = serializers.CharField(source='get_priority_display')
     probability_percentage = serializers.CharField(source='get_probability_percentage_display')
+    change_history = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = Risk
-        fields = ['id', 'name', 'project', 'background', 'user_assigned', 'priority', 'probability_percentage']
+        fields = ['id', 'name', 'project', 'background', 'user_assigned', 'priority', 'probability_percentage', 'change_history']
+
+    @classmethod
+    def get_change_history(cls, instance):
+        history = instance.change_history.all().values()
+        return history
 
 
 
