@@ -131,7 +131,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Enables the JWT library to be used for authentication
+# Enables the JWT library to be used for authentication - this can be achieved by commenting-out the
+# Sessionauth line
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
