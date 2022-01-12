@@ -40,5 +40,7 @@ class Risk(models.Model):
     priority = models.CharField(max_length=10, choices=Priority.choices)
     probability_percentage = models.CharField(max_length=6, choices=Probability.choices)
 
+    def __str__(self):
+        return self.name
 
 
