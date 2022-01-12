@@ -1,3 +1,4 @@
+from django.utils.datetime_safe import datetime
 from rest_framework import serializers
 from .models import Project, Risk
 
@@ -33,12 +34,26 @@ class DetailedRiskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Risk
-        fields = ['id', 'name', 'project', 'background', 'user_assigned', 'priority', 'probability_percentage', 'change_history']
+        fields = ['id', 'name', 'project', 'background', 'user_assigned', 'priority', 'probability_percentage',
+                  'change_history']
 
     @classmethod
     def get_change_history(cls, instance):
         history = instance.change_history.all().values()
-        return history
+        changes_list = list(history)
+        irrelevant_changes = ['history_id', 'history_date']
+        changes_descriptions = []
+        for index, change in enumerate(changes_list):
+            if index != 0:
+                for key, value in change.items():
+                    if changes_list[index-1][key] != changes_list[index][key]:
+                        if key not in irrelevant_changes:
+                            new_value = changes_list[index - 1][key]
+                            old_value = changes_list[index][key]
+                            timestamp = datetime.strftime(changes_list[index]['history_date'], '%d-%m-%Y, %H:%M:%S')
+                            changes_descriptions.append(f'Change: {key} was changed from {old_value} to {new_value}'
+                                                        f' on {timestamp}.')
+        return changes_descriptions
 
 
 
