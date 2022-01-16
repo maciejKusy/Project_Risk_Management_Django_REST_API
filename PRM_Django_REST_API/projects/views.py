@@ -1,7 +1,7 @@
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, Risk
-from .serializers import ProjectSerializer, DetailedRiskSerializer
+from .serializers import ProjectSerializer, RiskSerializer
 
 
 class ProjectView(ModelViewSet):
@@ -11,6 +11,6 @@ class ProjectView(ModelViewSet):
 
 
 class RiskView(ModelViewSet):
-    serializer_class = DetailedRiskSerializer
+    serializer_class = RiskSerializer
     queryset = Risk.objects.all()
     permission_classes = [IsAuthenticated]
