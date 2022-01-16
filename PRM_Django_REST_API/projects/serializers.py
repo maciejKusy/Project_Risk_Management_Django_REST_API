@@ -40,18 +40,18 @@ class RiskSerializer(serializers.ModelSerializer):
                   'change_history']
 
 
-class ProjectSerializerForUpdateRequests(serializers.ModelSerializer):
-
-    class Meta:
-        model = Project
-        fields = ['id']
-
-
 class RiskSerializerForUpdateRequests(serializers.ModelSerializer):
 
     class Meta:
         model = Risk
-        fields = ['id']
+        fields = ['id', 'project', 'user_assigned']
+
+
+class ProjectSerializerForUpdateRequests(serializers.ModelSerializer):
+
+    class Meta:
+        model = Project
+        fields = ['id', 'risks', 'users_assigned']
 
 
 
