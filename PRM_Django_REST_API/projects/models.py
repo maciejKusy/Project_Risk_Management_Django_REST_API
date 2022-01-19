@@ -1,13 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.datetime_safe import datetime
 from simple_history.models import HistoricalRecords
-from users.models import Profile
 
 
 class Project(models.Model):
     name = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=300, blank=False)
+    users_assigned = models.ManyToManyField('users.Profile', related_name='projects', blank=True)
 
     def __str__(self):
         return self.name
@@ -40,9 +39,9 @@ class Risk(models.Model):
     name = models.CharField(max_length=100, blank=False)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='risks', blank=False)
     background = models.CharField(max_length=50, choices=Background.choices, blank=False)
-    user_assigned = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
     priority = models.CharField(max_length=2, choices=Priority.choices, blank=False)
     probability_percentage = models.CharField(max_length=2, choices=Probability.choices, blank=False)
+    resolvers_assigned = models.ManyToManyField('users.Profile', related_name='resolvers_assigned', blank=True)
     change_history = HistoricalRecords()
 
     def __str__(self):

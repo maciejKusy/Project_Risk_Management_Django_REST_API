@@ -15,4 +15,3 @@ class UserProfileSerializer(serializers.ModelSerializer):
         representation['account_created'] = instance.account_created.strftime('%d-%m-%Y %H:%M')
         return representation
 
-

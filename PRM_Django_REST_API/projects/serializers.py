@@ -29,34 +29,29 @@ class BasicProjectSerializer(serializers.ModelSerializer):
 class RiskSerializer(serializers.ModelSerializer):
     project = BasicRiskSerializer(many=False, read_only=False)
     background = serializers.CharField(source='get_background_display')
-    user_assigned = UserProfileSerializer(many=False, read_only=True)
     priority = serializers.CharField(source='get_priority_display')
     probability_percentage = serializers.CharField(source='get_probability_percentage_display')
+    resolvers_assigned = UserProfileSerializer(many=True, read_only=True)
     change_history = serializers.ListField(source='get_change_history')
 
     class Meta:
         model = Risk
-        fields = ['id', 'name', 'project', 'background', 'user_assigned', 'priority', 'probability_percentage',
+        fields = ['id', 'name', 'project', 'background', 'resolvers_assigned', 'priority', 'probability_percentage',
                   'change_history']
 
 
 class RiskSerializerForUpdateRequests(serializers.ModelSerializer):
+    background = serializers.CharField(source='get_background_display')
+    priority = serializers.CharField(source='get_priority_display')
+    probability_percentage = serializers.CharField(source='get_probability_percentage_display')
 
     class Meta:
         model = Risk
-        fields = ['id', 'project', 'user_assigned']
+        fields = ['id', 'project', 'background', 'priority', 'probability_percentage', 'resolvers_assigned']
 
 
 class ProjectSerializerForUpdateRequests(serializers.ModelSerializer):
 
     class Meta:
         model = Project
-        fields = ['id', 'risks', 'users_assigned']
-
-
-
-
-
-
-
-
+        fields = ['id', 'name', 'description', 'risks', 'users_assigned']
