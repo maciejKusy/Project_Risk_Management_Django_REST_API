@@ -15,7 +15,7 @@ class ProjectView(ModelViewSet):
         if self.request.method in ['PUT', 'POST']:
             return ProjectSerializerForUpdateRequests
         else:
-            return ProjectSerializer
+            return super().get_serializer_class()
 
 
 class RiskView(ModelViewSet):
@@ -27,4 +27,4 @@ class RiskView(ModelViewSet):
         if self.request.method in ['PUT', 'POST']:
             return RiskSerializerForUpdateRequests
         else:
-            return RiskSerializer
+            return super().get_serializer_class()
