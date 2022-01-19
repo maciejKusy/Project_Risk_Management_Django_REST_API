@@ -6,14 +6,16 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0010_remove_historicalrisk_user_assigned_and_more'),
-        ('users', '0003_alter_profile_projects'),
+        ("projects", "0010_remove_historicalrisk_user_assigned_and_more"),
+        ("users", "0003_alter_profile_projects"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='profile',
-            name='risks',
-            field=models.ManyToManyField(blank=True, related_name='users_assigned', to='projects.Risk'),
+            model_name="profile",
+            name="risks",
+            field=models.ManyToManyField(
+                blank=True, related_name="users_assigned", to="projects.Risk"
+            ),
         ),
     ]

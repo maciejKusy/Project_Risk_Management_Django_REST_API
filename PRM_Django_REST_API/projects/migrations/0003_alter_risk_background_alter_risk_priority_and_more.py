@@ -6,23 +6,42 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0002_alter_risk_probability_percentage'),
+        ("projects", "0002_alter_risk_probability_percentage"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='risk',
-            name='background',
-            field=models.CharField(choices=[('1', 'Finance'), ('2', 'Staffing'), ('3', 'Staffing')], max_length=50),
+            model_name="risk",
+            name="background",
+            field=models.CharField(
+                choices=[("1", "Finance"), ("2", "Staffing"), ("3", "Staffing")],
+                max_length=50,
+            ),
         ),
         migrations.AlterField(
-            model_name='risk',
-            name='priority',
-            field=models.CharField(choices=[('1', 'Low'), ('2', 'Medium'), ('3', 'High')], max_length=10),
+            model_name="risk",
+            name="priority",
+            field=models.CharField(
+                choices=[("1", "Low"), ("2", "Medium"), ("3", "High")], max_length=10
+            ),
         ),
         migrations.AlterField(
-            model_name='risk',
-            name='probability_percentage',
-            field=models.CharField(choices=[('1', '10%'), ('2', '20%'), ('3', '30%'), ('4', '40%'), ('5', '50%'), ('6', '60%'), ('7', '70%'), ('8', '80%'), ('9', '90%'), ('10', '100%')], max_length=6),
+            model_name="risk",
+            name="probability_percentage",
+            field=models.CharField(
+                choices=[
+                    ("1", "10%"),
+                    ("2", "20%"),
+                    ("3", "30%"),
+                    ("4", "40%"),
+                    ("5", "50%"),
+                    ("6", "60%"),
+                    ("7", "70%"),
+                    ("8", "80%"),
+                    ("9", "90%"),
+                    ("10", "100%"),
+                ],
+                max_length=6,
+            ),
         ),
     ]

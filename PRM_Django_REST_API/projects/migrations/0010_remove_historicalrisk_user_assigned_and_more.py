@@ -6,16 +6,16 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('projects', '0009_alter_historicalrisk_priority_and_more'),
+        ("projects", "0009_alter_historicalrisk_priority_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='historicalrisk',
-            name='user_assigned',
+            model_name="historicalrisk",
+            name="user_assigned",
         ),
         migrations.RemoveField(
-            model_name='risk',
-            name='user_assigned',
+            model_name="risk",
+            name="user_assigned",
         ),
     ]
