@@ -6,22 +6,22 @@
 <h3>Built with</h3>
 <ul>
   <li>
-    <a href="https://www.djangoproject.com/">Django framework</a>
+    <a href="https://www.djangoproject.com/" target="_blank">Django framework</a>
   </li>
   <li>
-    <a href="https://www.django-rest-framework.org/">Django REST framework</a>
+    <a href="https://www.django-rest-framework.org/" target="_blank">Django REST framework</a>
   </li>
   <li>
-    <a href="https://pipenv.pypa.io/">Pipenv framework</a>
+    <a href="https://pipenv.pypa.io/" target="_blank">Pipenv framework</a>
   </li>
   <li>
-    <a href="https://django-simple-history.readthedocs.io/">Django simple history</a>
+    <a href="https://django-simple-history.readthedocs.io/" target="_blank">Django simple history</a>
   </li>
   <li>
-    <a href="https://pypi.org/project/python-dotenv/">Dotenv library</a>
+    <a href="https://pypi.org/project/python-dotenv/" target="_blank">Dotenv library</a>
   </li>
   <li>
-    <a href="https://github.com/othneildrew/Best-README-Template/">Best readme template</a>
+    <a href="https://github.com/othneildrew/Best-README-Template/" target="_blank">Best readme template</a>
   </li>
 </ul>
   
