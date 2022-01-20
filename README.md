@@ -12,13 +12,13 @@
     <a href="https://www.django-rest-framework.org/" target="_blank">Django REST framework</a>
   </li>
   <li>
-    <a href="https://pipenv.pypa.io/" target="_blank">Pipenv framework</a>
+    <a href="https://pipenv.pypa.io/" target="_blank">Pipenv</a>
   </li>
   <li>
     <a href="https://django-simple-history.readthedocs.io/" target="_blank">Django simple history</a>
   </li>
   <li>
-    <a href="https://pypi.org/project/python-dotenv/" target="_blank">Dotenv library</a>
+    <a href="https://pypi.org/project/python-dotenv/" target="_blank">Dotenv</a>
   </li>
   <li>
     <a href="https://github.com/othneildrew/Best-README-Template/" target="_blank">Best readme template</a>
