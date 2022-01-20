@@ -58,17 +58,10 @@ class RiskSerializerForUpdateRequests(serializers.ModelSerializer):
 
     class Meta:
         model = Risk
-        fields = [
-            "id",
-            "project",
-            "background",
-            "priority",
-            "probability_percentage",
-            "resolvers_assigned",
-        ]
+        fields = '__all__'
 
 
 class ProjectSerializerForUpdateRequests(serializers.ModelSerializer):
     class Meta:
         model = Project
-        fields = ["id", "name", "description", "risks", "users_assigned"]
+        fields = '__all__'
