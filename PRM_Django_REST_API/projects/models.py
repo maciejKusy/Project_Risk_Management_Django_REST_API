@@ -4,6 +4,10 @@ from simple_history.models import HistoricalRecords
 
 
 class Project(models.Model):
+    """
+    Used to house information pertaining to a particular project. The below fields are the bare minimum - additional
+    relevant fields can be added.
+    """
     name = models.CharField(max_length=100, blank=False)
     description = models.TextField(max_length=300, blank=False)
     users_assigned = models.ManyToManyField(
@@ -15,6 +19,9 @@ class Project(models.Model):
 
 
 class Risk(models.Model):
+    """
+    Used to create records describing particular Project Risks.
+    """
     class Background(models.TextChoices):
         FINANCE = "1", "Finance"
         OPERATIONS = "2", "Operations"
@@ -58,11 +65,15 @@ class Risk(models.Model):
         return self.name
 
     @property
-    def get_change_history(self):
+    def get_change_history(self) -> list:
+        """
+        Retrieves information from the historical records of a Model and presents them in the form of
+        :return: a list of changes applied to a Risk object
+        """
         history = self.change_history.all().values()
         changes_list = list(history)
         irrelevant_changes = ["history_id", "history_date", "history_type"]
-        changes_descriptions = []
+        changes_descriptions = list()
         for index, change in enumerate(changes_list):
             if index != 0:
                 for key, value in change.items():
@@ -74,8 +85,12 @@ class Risk(models.Model):
                                 changes_list[index]["history_date"],
                                 "%d-%m-%Y, %H:%M:%S",
                             )
-                            changes_descriptions.append(
-                                f"Change: {key} was changed from {old_value} to {new_value}"
-                                f" on {timestamp}."
+                            changes_descriptions.append({
+                                "change": {
+                                    "field_changed": key,
+                                    "old_value": old_value,
+                                    "new_value": new_value,
+                                    "changed_on": timestamp}
+                                }
                             )
         return changes_descriptions

@@ -4,6 +4,9 @@ from django.utils import timezone
 
 
 class Profile(models.Model):
+    """
+    User do retain various data pertaining to the user.
+    """
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
     account_created = models.DateTimeField(default=timezone.now)
 

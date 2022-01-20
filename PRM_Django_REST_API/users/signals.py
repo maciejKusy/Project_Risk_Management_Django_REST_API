@@ -7,10 +7,16 @@ from .models import Profile
 
 @receiver(post_save, sender=User)
 def create_profile(sender, instance, created, **kwargs):
+    """
+    Ensures that a profile object is created upon creation of a new User object.
+    """
     if created:
         Profile.objects.create(user=instance)
 
 
 @receiver(post_save, sender=User)
 def save_profile(sender, instance, **kwargs):
+    """
+    Ensures that a profile object is saved upon the respective User model being saved.
+    """
     instance.profile.save()
