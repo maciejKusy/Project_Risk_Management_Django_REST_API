@@ -54,6 +54,7 @@ class ProjectView(ModelViewSet):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
         return_serializer = ProjectSerializer(instance, data=request.data, partial=partial)
+        return_serializer.is_valid(raise_exception=True)
 
         if getattr(instance, '_prefetched_objects_cache', None):
             # If 'prefetch_related' has been applied to a queryset, we need to
